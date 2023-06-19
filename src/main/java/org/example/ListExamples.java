@@ -22,6 +22,8 @@ public class ListExamples {
         max(nums);
         min(nums);
         secondLargest(nums);
+        System.out.println(1%10);
+        System.out.println(1/10);
 
 
     }
