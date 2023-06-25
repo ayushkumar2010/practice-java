@@ -44,12 +44,12 @@ public class ListExamples {
         }
     }
 
-    public static void sum(List<Integer> data) {
-        int result = 0;
+    public static Integer add(List<Integer> data) {
+        int sum = 0;
         for (int element : data) {
-            result = result + element;
+            sum = sum + element;
         }
-        System.out.println(result);
+        return sum;
     }
 
     public static void max(List<Integer> row) {
