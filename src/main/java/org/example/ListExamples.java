@@ -1,7 +1,7 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.IntStream;
 
 public class ListExamples {
     public static void main(String[] args) {
@@ -11,18 +11,19 @@ public class ListExamples {
         fruits.add("kiwi");
 //        printFruits(fruits);
         //List<Integer> -> mid, sum, max, min, second largest,
-//        List<Integer> nums = new ArrayList<>();
-//        nums.add(10);
-//        nums.add(3);
-//        nums.add(4);
-//        nums.add(24);
-//        nums.add(2);
+        List<Integer> nums = new ArrayList<>();
+        int[] num = {4,5,1,2,6,7,9,3};
+        nums.add(10);
+        nums.add(3);
+        nums.add(4);
+        nums.add(24);
+        nums.add(2);
 //        mid(nums);
 //        sum(nums);
 //        max(nums);
 //        min(nums);
 //        secondLargest(nums);
-
+        System.out.println(kthSmallest(num, 8));
     }
 
 
@@ -52,41 +53,60 @@ public class ListExamples {
         return sum;
     }
 
-    public static void max(List<Integer> row) {
+
+    public static Integer max(List<Integer> row) {
         int maximum = row.get(0);
         for (int index = 1; index < row.size(); index++) {
             if (maximum < row.get(index)) {
                 maximum = row.get(index);
             }
         }
-        System.out.println(maximum);
+        return maximum;
     }
 
-    public static void min(List<Integer> row) {
+    public static Integer min(List<Integer> row) {
         int minimum = row.get(0);
         for (int index = 1; index < row.size(); index++) {
-            if (minimum > row.get(index)) {
-                minimum = row.get(index);
-            }
+            if (minimum > row.get(index)) minimum = row.get(index);
         }
-        System.out.println(minimum);
+        return minimum;
     }
 
-    public static void secondLargest(List<Integer> list) {
-        int first_largest = list.get(0);
-        int second_largest = 0;
-        for (int index = 1; index < list.size(); index++) {
-            if (first_largest < list.get(index)) {
-                second_largest = first_largest;
-                first_largest = list.get(index);
+    public static Integer secondLargest(List<Integer> list) {
+        int largest = list.get(0);
+        int secondLargest = 0;
+        for (Integer num : list) {
+            if (largest < num) {
+                secondLargest = largest;
+                largest = num;
             }
-            else if (second_largest < list.get(index)) {
-                second_largest = list.get(index);
+            else if (secondLargest < num) {
+                secondLargest = num;
             }
         }
-        System.out.println(second_largest);
+        return secondLargest;
+    }
+
+    public int removeDuplicates(int[] nums) {
+        int elements = 1;
+        int fixed = nums[0];
+        for (int num : nums) {
+            if (fixed != num) {
+                elements = elements + 1;
+                fixed = num;
+            }
+        }
+        return elements;
     }
 
 
+/*Given an array arr[] and an integer K where K is smaller than size of array,
+the task is to find the Kth smallest element in the given array.
+It is given that all array elements are distinct.*/
 
+
+    public static Integer kthSmallest(int[] arr, int k){
+        Arrays.sort(arr);
+        return arr[k-1];
+    }
 }
