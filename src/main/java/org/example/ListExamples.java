@@ -23,7 +23,17 @@ public class ListExamples {
 //        max(nums);
 //        min(nums);
 //        secondLargest(nums);
-        System.out.println(kthSmallest(num, 8));
+//        Using recursion
+        System.out.println(isPalindrome("daddd"));
+        System.out.println(factorial(10));
+        System.out.println(fibonacci(3));
+
+
+//        Without Using recursion
+        System.out.println(isPalindromes("daddd"));
+        System.out.println(factorials(10));
+        System.out.println(fibonaccis(3));
+
     }
 
 
@@ -109,4 +119,58 @@ It is given that all array elements are distinct.*/
         Arrays.sort(arr);
         return arr[k-1];
     }
+
+    public static boolean isPalindrome(String str){
+        if (str.length() == 0 || str.length() == 1) return true;
+        if (str.charAt(0) == str.charAt(str.length()-1)) {
+            return isPalindrome(str.substring(1, str.length() - 2));
+        }
+        else return false;
+    }
+
+
+    public static int factorial(int n){
+        if (n == 0 || n ==1) return 1;
+        return n * factorial(n - 1);
+    }
+
+    public static int fibonacci(int nthTerm){
+        if (nthTerm == 1 || nthTerm == 2) return 1;
+        return fibonacci(nthTerm - 1) + fibonacci(nthTerm - 2);
+    }
+
+
+    public static boolean isPalindromes(String str) {
+        int leftPoint = 0;
+        int rightPoint = str.length()-1;
+        while (leftPoint < rightPoint) {
+            if (str.charAt(leftPoint) == str.charAt(rightPoint)) {
+                leftPoint = leftPoint + 1;
+                rightPoint = rightPoint - 1;
+            }
+            else return false;
+        }
+        return true;
+    }
+
+    public static int factorials(int n) {
+        int sum = 1;
+        while (n > 0) {
+            sum = sum * n;
+            n = n - 1;
+        }
+        return sum;
+    }
+
+    public static int fibonaccis(int nthTerm) {
+        int previous = 0;
+        int curr = 1;
+        while (nthTerm > 1) {
+            curr = curr + previous;
+            previous = curr - previous;
+            nthTerm = nthTerm -1;
+        }
+        return curr;
+    }
+
 }
