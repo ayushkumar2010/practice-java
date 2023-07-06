@@ -38,7 +38,6 @@ public class ListExamples {
         System.out.println(factorialIterative(10));
         System.out.println(fibonaccis(3));
 
-        System.out.println(mapConverter(fruits));
     }
 
 
@@ -181,12 +180,4 @@ It is given that all array elements are distinct.*/
     }
 
 
-    public static Map mapConverter(List<String> input) {
-        Map<String, Integer> output = new HashMap<>();
-        for (String element:input) {
-            if (output.containsKey(element)) output.put(element, output.get(element) + 1);
-            else output.put(element, 1);
-        }
-        return output;
-    }
 }
