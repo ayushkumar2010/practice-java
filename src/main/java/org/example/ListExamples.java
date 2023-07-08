@@ -7,7 +7,11 @@ public class ListExamples {
     public static void main(String[] args) {
         List<String> fruits = new ArrayList<>();
         fruits.add("apple");
+        fruits.add("apple");
         fruits.add("orange");
+        fruits.add("orange");
+        fruits.add("orange");
+        fruits.add("kiwi");
         fruits.add("kiwi");
 //        printFruits(fruits);
         //List<Integer> -> mid, sum, max, min, second largest,
@@ -174,5 +178,6 @@ It is given that all array elements are distinct.*/
         }
         return curr;
     }
+
 
 }
