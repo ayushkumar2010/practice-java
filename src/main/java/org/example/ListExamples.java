@@ -27,16 +27,8 @@ public class ListExamples {
 //        max(nums);
 //        min(nums);
 //        secondLargest(nums);
-//        Using recursion
-        System.out.println(isPalindrome("daddd"));
-        System.out.println(factorial(10));
-        System.out.println(fibonacci(3));
 
 
-//        Without Using recursion
-        System.out.println(isPalindromes("daddd"));
-        System.out.println(factorialIterative(10));
-        System.out.println(fibonaccis(3));
 
     }
 
@@ -178,6 +170,47 @@ It is given that all array elements are distinct.*/
         }
         return curr;
     }
+
+    public static List<Integer> list2(int num) {
+        List<Integer> bucket = new ArrayList<>();
+        int[] values = {1000, 500, 100, 50, 10, 5, 1};
+        int j = 0;
+        int k = 2;
+        while (num > 0) {
+            if (num < values[k]){
+                k = k + 2;
+                j = k - 2;
+            }
+            else if ((num / values[j]) != 0) {
+                for (int i = 0; i < (num / values[j]); i++) {
+                    bucket.add(0, (values[j]));
+                }
+                num = num - ((num / values[j]) * values[j]);
+            }
+
+            else if (num / ((values[k]) * 9) == 1){
+                bucket.add(0, values[k]);
+                bucket.add(0, values[k-2]);
+                num = num - (values[k-2] - values[k]);
+            }
+            else if ((num / values[j+1]) != 0) {
+                for (int i = 0; i < (num / values[j+1]); i++) {
+                    bucket.add(0, (values[j+1]));
+                }
+                num = num - ((num / values[j+1]) * values[j+1]);
+            }
+            else if (num / ((values[k]) * 4) == 1) {
+                bucket.add(0, values[k]);
+                bucket.add(0, values[k-1]);
+                num = num - (values[k-1] - values[k]);
+            }
+            else {
+                j++;
+            }
+        }
+        return bucket;
+    }
+
 
 
 }
