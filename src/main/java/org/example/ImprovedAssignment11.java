@@ -13,25 +13,27 @@ import java.io.IOException;
  * Using TextFile and a Map<Character,Integer>, create a program that takes the file name as a command line argument and
  * counts the occurrence of all the different characters. Save the results in a text file.
  */
-public class Assignment11 {
+public class ImprovedAssignment11 {
     public static void main(String[] args) {
         String filePath = "/Users/ayushkumar/test.txt";
         String outPath = "/Users/ayushkumar/test_out.txt";
         String text = "";
+        Map<Character, Integer> main = new HashMap<>();
         try {
             File file = new File(filePath);
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 text = text + line;
+                Map<Character, Integer> map = countCharacter(text);
+                mergeMap(main, map);
             }
             scanner.close();
         } catch (FileNotFoundException e) {
             System.out.println("File not found: " + e.getMessage());
         }
-        Map<Character, Integer> map = countCharacter(text);
         String outPut = "";
-        for (Map.Entry<Character, Integer> e : map.entrySet()) {
+        for (Map.Entry<Character, Integer> e : main.entrySet()) {
             outPut = outPut + e.getKey() + ", " + e.getValue() + "\n";
         }
         writeToFile(outPath, outPut);
@@ -54,6 +56,17 @@ public class Assignment11 {
             bufferedWriter.close();
         } catch (IOException e) {
             System.out.println("An error occurred: " + e.getMessage());
+        }
+    }
+
+    public static void mergeMap(Map<Character, Integer> main , Map<Character, Integer> input) {
+        for (Map.Entry<Character, Integer> e : input.entrySet()) {
+            if (main.containsKey(e.getKey())) {
+                main.put(e.getKey(), e.getValue() + 1);
+            }
+            else {
+                main.put(e.getKey(), e.getValue());
+            }
         }
     }
 }
