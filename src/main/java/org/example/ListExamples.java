@@ -28,7 +28,7 @@ public class ListExamples {
 //        min(nums);
 //        secondLargest(nums);
 
-
+        System.out.println(bubbleSorting(num));
 
     }
 
@@ -210,7 +210,21 @@ It is given that all array elements are distinct.*/
         }
         return bucket;
     }
-
+    public static int[] bubbleSorting(int[] array) {
+        int length = array.length;
+        int buffer = 0;
+        while (length > 0) {
+            for (int i = 0; i < length - 1; i++) {
+                if (array[i] > array[i + 1]) {
+                    buffer = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = buffer;
+                }
+            }
+            length = length - 1;
+        }
+        return array;
+    }
 
 
 }
